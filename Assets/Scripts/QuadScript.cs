@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Tobii.Gaming;
 
 public class QuadScript : MonoBehaviour
 {
@@ -68,6 +69,18 @@ public class QuadScript : MonoBehaviour
         UserLookCamera.cullingMask = (1 << LayerMask.NameToLayer("UI")) | (1 << LayerMask.NameToLayer("TestPhotoLayer"));
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            EventCenter.Broadcast(EventDefine.TurnOffUI);
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            EventCenter.Broadcast(EventDefine.TurnOnUI);
+        }
+    }
+
     void FixedUpdate()
     {
 
@@ -81,7 +94,10 @@ public class QuadScript : MonoBehaviour
 
                 RaycastHit hit;
 
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                float X = TobiiAPI.GetGazePoint().Screen.x;
+                float Y = TobiiAPI.GetGazePoint().Screen.y;
+
+                var ray = Camera.main.ScreenPointToRay(new Vector2(X, Y));
 
                 bool hitit = Physics.Raycast(ray, out hit, 11f, LayerMask.GetMask("HeatMapMeshLayer"));
 
@@ -90,10 +106,9 @@ public class QuadScript : MonoBehaviour
                     addHitPoint(hit.textureCoord.x * 2 - 1, hit.textureCoord.y * 2 - 1);
                 }
 
-                string X = Mathf.RoundToInt(Input.mousePosition.x).ToString();
-                string Y = Mathf.RoundToInt(Input.mousePosition.y).ToString();
+                
 
-                string S = "时间："+ValueSheet.currentTime.ToString("#0.00")+"    " + "X坐标："+ X+ "    "+ "Y坐标："+Y;
+                string S = "时间："+ValueSheet.currentTime.ToString("#0.00")+"    " + "X坐标："+ Mathf.RoundToInt(X).ToString()+ "    "+ "Y坐标："+Mathf.RoundToInt(Y).ToString();
 
                 ValueSheet.output.Enqueue(S);
             }
