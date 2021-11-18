@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - HeatMapLayer
+  - HeatMapMeshLayer
+  - TestPhotoLayer
   - 
-  - 
-  - 
+  - HeatMapUILayer
   - 
   - 
   - 
