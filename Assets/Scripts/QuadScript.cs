@@ -96,7 +96,7 @@ public class QuadScript : MonoBehaviour
 
                 float X = TobiiAPI.GetGazePoint().Screen.x;
                 float Y = TobiiAPI.GetGazePoint().Screen.y;
-
+   
                 var ray = Camera.main.ScreenPointToRay(new Vector2(X, Y));
 
                 bool hitit = Physics.Raycast(ray, out hit, 11f, LayerMask.GetMask("HeatMapMeshLayer"));

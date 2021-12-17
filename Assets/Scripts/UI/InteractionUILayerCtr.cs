@@ -7,8 +7,17 @@ public class InteractionUILayerCtr : MonoBehaviour
     [SerializeField]
     GameObject[] ObjectsNeedTurnOffOnCapture;
 
+
+    public GameObject ImageCanvas;
+
+    public GameObject VideoCanvas;
+
+    public static InteractionUILayerCtr instance;
+
     public void Start()
     {
+        instance = this;
+
         EventCenter.AddListener(EventDefine.onVideoStartCapture, BoardcastTurnOffUIEvent);
         EventCenter.AddListener(EventDefine.onVideoStopCapture, BoardcastTurnOnUIEvent);
 

@@ -12,25 +12,6 @@ public class DialogTest : MonoBehaviour
 {
     public Image BGimg;
 
-    //public void OpenVideoFile()
-    //{
-    //    string title = "请选择打开的文件：";
-    //    //string msg = string.Empty;
-        
-    //    string path = FileDialogForWindows.FileDialog(title,2,"");
-
-    //    if (!string.IsNullOrEmpty(path))
-    //    {
-          
-    //       Debug.Log("指定的文件路径为: " + path);
-
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("用户未作选择！");
-    //    }
-    //}
-
     public void OpenImageFile()
     {
         string title = "请选择打开的文件：";
@@ -40,7 +21,8 @@ public class DialogTest : MonoBehaviour
 
         if (!string.IsNullOrEmpty(path))
         {
-
+            InteractionUILayerCtr.instance.ImageCanvas.SetActive(true);
+            InteractionUILayerCtr.instance.VideoCanvas.SetActive(false);
             Debug.Log("指定的文件路径为: " + path);
             LoadImg(path);
 
